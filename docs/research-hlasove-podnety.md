@@ -268,3 +268,15 @@ CREATE TABLE replies (
 - WhatsApp: [respond.io: změna ceníku 2026](https://respond.io/blog/whatsapp-pricing-change-2026.md)
 - Feedback boardy: [Fider vs LogChimp](https://openalternative.co/compare/fider/vs/logchimp), [Astuto vs Fider](https://openalternative.co/compare/astuto/vs/fider), [Cloudron fórum](https://forum.cloudron.io/post/52838)
 - Vhisper: [DEV článek](https://dev.to/ra_jeeves/building-vhisper-voice-notes-app-with-ai-transcription-and-post-processing-1609)
+
+---
+
+## Doplnění 24. 10. 2026: odpovědi z webu obce Příšovice
+
+Provozovatelem je obec Příšovice. Odpovědi se mají primárně hledat na webu obce, který je zdrojem pravdy. Každá odpověď musí odkazovat na konkrétní článek nebo dokument. Když se odpověď nenajde, dotaz převezme správce.
+
+- **Web obce:** [prisovice.cz](https://www.prisovice.cz). Podle adres dokumentů (`/wp-content/uploads/…`) zřejmě běží na WordPressu a dokumenty zveřejňuje jako PDF, například [jednací řád zastupitelstva 2022–2026](https://prisovice.cz/wp-content/uploads/2024/01/jednaci-rad-2022-2026.pdf).
+- **Úřední deska:** samostatný systém e-obec, [prisovice.e-obec.cz](https://prisovice.e-obec.cz/urednideska.php?soubor=378).
+- **Stahování webu:** Cloudflare Browser Rendering má od 10. 3. 2026 v otevřené betě endpoint [`/crawl`](https://developers.cloudflare.com/changelog/2026-03-10-br-crawl-endpoint). Projde web od zadané adresy a vrátí stránky jako HTML, Markdown nebo JSON. Umí opakované běhy jen nad změněnými stránkami (`modifiedSince`) a respektuje robots.txt. Druhá možnost je WordPress REST API, pokud ho web má zapnuté.
+- **Vyhledávání:** vestavěné procházení webu v Cloudflare AI Search funguje jen pro doménu ve stejném Cloudflare účtu ([dokumentace](https://developers.cloudflare.com/fundamentals/reference/cloudflare-site-crawling/)). Web obce tam pravděpodobně není, proto vlastní stahování do R2 a AI Search nad R2.
+- **Neověřeno:** web obce i dokumentace Cloudflare byly z tohoto prostředí blokované. Údaje pochází z výsledků vyhledávání.
