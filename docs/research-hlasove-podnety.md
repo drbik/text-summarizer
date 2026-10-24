@@ -280,3 +280,54 @@ Provozovatelem je obec Příšovice. Odpovědi se mají primárně hledat na web
 - **Stahování webu:** Cloudflare Browser Rendering má od 10. 3. 2026 v otevřené betě endpoint [`/crawl`](https://developers.cloudflare.com/changelog/2026-03-10-br-crawl-endpoint). Projde web od zadané adresy a vrátí stránky jako HTML, Markdown nebo JSON. Umí opakované běhy jen nad změněnými stránkami (`modifiedSince`) a respektuje robots.txt. Druhá možnost je WordPress REST API, pokud ho web má zapnuté.
 - **Vyhledávání:** vestavěné procházení webu v Cloudflare AI Search funguje jen pro doménu ve stejném Cloudflare účtu ([dokumentace](https://developers.cloudflare.com/fundamentals/reference/cloudflare-site-crawling/)). Web obce tam pravděpodobně není, proto vlastní stahování do R2 a AI Search nad R2.
 - **Neověřeno:** web obce i dokumentace Cloudflare byly z tohoto prostředí blokované. Údaje pochází z výsledků vyhledávání.
+
+---
+
+## Doplnění 24. 10. 2026: český a evropský hosting
+
+### Povinnost pro obce: katalog cloud computingu
+
+Když aplikaci provozuje obec, smí podle zákona o informačních systémech veřejné správy (§ 6l a násl. ZoISVS) používat jen cloud zapsaný v **katalogu cloud computingu**, který vede Digitální a informační agentura (DIA). Přechodné období skončilo 31. 12. 2023. Od 1. 1. 2026 platí pro zápis vyhláška 505/2025 Sb. Bezpečnostní úrovně jsou nízká, střední, vysoká a kritická (vyhláška 411/2025 Sb.).
+
+- Zapsaný musí být poskytovatel i konkrétní nabídka služby. Nevyhovující cloud musí úřad přestat používat do 12 měsíců.
+- **Cloudflare:** zápis v katalogu se mi nepodařilo potvrdit.
+- **Potvrzený český poskytovatel:** MasterDC je v katalogu na bezpečnostní úrovni 3 (srpen 2025), s datovými centry v ČR.
+- **Neověřeno:** WEDOS, Zerops, vshosting a evropské clouds (Scaleway, OVHcloud, Hetzner, IONOS).
+- Katalog na dia.gov.cz byl z tohoto prostředí blokovaný. Před ostrým provozem je potřeba ověřit stav přímo v katalogu a s DIA nebo právníkem obce.
+
+Zdroje: [výklad § 6l ZoISVS (DIA)](https://dia.gov.cz/media/2233/download/Vyklad-ustanoveni-%C2%A7-6l-ZoISVS_231223.pdf), [workshop DIA k zápisu do katalogu 2025](https://dia.gov.cz/media/2221/download/2025-03-05_Workshop_zapis-do-katalogu-CC_DIA.pdf), [nabídky v katalogu](https://www.dia.gov.cz/cs/nase-cinnosti/na-cem-pracujeme/egovernment-cloud/katalog-cloud-computingu/nabidky-cloud-computingu), [metodika DIA pro poskytovatele](https://metodiky.dia.gov.cz/egov-cloud/metodika-pro-poskytovatele), [Lupa: MasterDC na úrovni 3](https://www.lupa.cz/aktuality/masterdc-je-prvni-poskytovatel-z-ceska-s-vysokou-urovni-bezpecnosti-na-dodavky-cloudu-statu/), [MasterDC pro veřejnou správu](https://www.masterdc.com/cloud-for-government/).
+
+### Hosting aplikace a databáze
+
+| Poskytovatel | Země | Co nabízí | Orientační cena | Katalog |
+|---|---|---|---|---|
+| [Zerops](https://www.zerops.io) | ČR (Praha, vznikl ve vshosting) | PaaS: aplikace (Bun, Python…), spravovaný PostgreSQL, S3 úložiště, cron | Plán 10 USD měsíčně + služby po minutách; ukázková aplikace s DB a úložištěm 12,83 USD ([getdeploying](https://getdeploying.com/zerops)) | Neověřeno |
+| [MasterDC](https://www.masterdc.com/cloud-servers/) | ČR (Praha, Brno) | IaaS a PaaS, vlastní cloudová platforma | Na poptávku | Ano, úroveň 3 |
+| [WEDOS](https://www.wedos.cz) | ČR (Hluboká nad Vltavou) | VPS a cloud, správa serveru je na nás | SSD VPS od cca 12 USD měsíčně za 4 GB RAM ([WHTop](https://www.whtop.com/plans/wedos.com/144763)) | Neověřeno |
+| Scaleway / OVHcloud | Francie | Kontejnery, spravovaný PostgreSQL, úložiště i AI v jednom účtu | Podle využití | Neověřeno |
+
+pgvector v PostgreSQL na Zerops se mi nepodařilo potvrdit.
+
+### AI: přepis řeči a jazykový model
+
+Český poskytovatel jazykového modelu jsem nenašel. Pro přepis češtiny existuje česká služba Beey.
+
+| Služba | Země | Co nabízí | Cena |
+|---|---|---|---|
+| [Beey API](https://docs.beey.io/) (Newton Technologies) | ČR (Praha) | Přepis řeči, čeština je hlavní jazyk | Na poptávku |
+| [Mistral AI](https://mistral.ai/cloud/inference/) | Francie | Jazykové modely (Mistral Small, Large) a přepis (Voxtral), EU infrastruktura podle zprostředkovatelů | Mistral Large 0,50 / 1,50 USD za milion tokenů (vstup / výstup), řeč se účtuje po minutách |
+| [OVHcloud AI Endpoints](https://www.ovhcloud.com/de/public-cloud/ai-endpoints/catalog/whisper-large-v3/) | Francie | Whisper large v3, jazykové modely (např. gpt-oss-120b), OpenAI-kompatibilní API | Oficiální ceník jsem neověřil |
+| Scaleway Generative APIs | Francie | Whisper large v3, jazykové modely, OpenAI-kompatibilní API | Whisper cca 0,0035 USD za minutu ([computeprices](https://computeprices.com/providers/scaleway/models/whisper-v3-large)) |
+
+### Dopad na architekturu
+
+Bez Cloudflare se změní stavební kameny, ale ne logika aplikace:
+
+- Workers → Node.js/TypeScript (Hono běží i mimo Cloudflare)
+- D1 → PostgreSQL
+- Vectorize + AI Search → pgvector v PostgreSQL
+- R2 → S3-kompatibilní úložiště
+- Workers AI → OpenAI-kompatibilní API evropského poskytovatele
+- Browser Rendering `/crawl` → vlastní jednoduché stahování podle mapy webu a převod PDF na text
+
+Když se aplikace postaví přenositelně (Node.js, PostgreSQL, S3, OpenAI-kompatibilní API), poběží na Zerops, WEDOS VPS, MasterDC i u Scaleway bez přepisování.
