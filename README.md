@@ -6,4 +6,6 @@ Projekt je zatím ve fázi požadavků:
 
 - [PRD](docs/PRD.md) – co aplikace má umět
 - [Rešerše](docs/research-hlasove-podnety.md) – hotová řešení, hosting a zdroje
+- [Oblasti a web](docs/oblasti-a-web.md) – projekty z nezavisli-prisovice.cz a jak aplikaci do webu vložit
+- [Hlasové modely](docs/hlasove-modely.md) – zkušenosti z jiného projektu pro výběr modelu přepisu
 - [CLAUDE.md](CLAUDE.md) – kontext a pravidla pro práci s Claude Code

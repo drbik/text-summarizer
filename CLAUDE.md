@@ -19,6 +19,8 @@ Cloudová session k nim nemá přístup. V lokální session je zpřístupni jen
 
 - `docs/PRD.md` – požadavky, verze 0.8 (export). Živá verze je v Claude Docs: https://claude.ai/artifact/1uqzdxoYxj8jR45McMdo3Z. Při rozporu platí živá verze.
 - `docs/research-hlasove-podnety.md` – rešerše hotových řešení, hostingu a všech zdrojů.
+- `docs/oblasti-a-web.md` – projekty a témata z webu nezavisli-prisovice.cz, návrh oblastí a technika webu pro F-09.
+- `docs/hlasove-modely.md` – zjištění o hlasových modelech z jiného projektu a co z nich plyne pro výběr modelu přepisu.
 
 Požadavky mají ID (F-01 až F-83) a prioritu MVP / Později / Zvážit. V commitech a kódu na ně odkazuj.
 
@@ -48,9 +50,9 @@ Do MVP nepatří e-mail, GDPR souhlasy a moderace, zakrytí osobních údajů, o
 
 ## Otevřené otázky, které blokují start
 
-- Hosting: Cloudflare (Workers, D1, Vectorize, AI Search), nebo český Zerops + Mistral. Rozhodne hlavně to, na čem běží web nezavisli-prisovice.cz.
-- Projekty z webu nezavisli-prisovice.cz zatím nejsou načtené ze složky WEB_Prisovice.
-- Zjištění o hlasových modelech z `lessons-learned.md` zatím nejsou zapracovaná.
+- Hosting: Cloudflare (Workers, D1, Vectorize, AI Search), nebo český Zerops + Mistral. Rozhodne hlavně to, na čem běží web nezavisli-prisovice.cz. Web běží na Cloudflare Workers (zjištěno 1. 11. 2026), což mluví pro Cloudflare.
+- Které oblasti vzít do MVP. Návrh: pět budoucích projektů z webu a Ostatní. O sedmi tématech k prověření zatím není rozhodnuto (`docs/oblasti-a-web.md`).
+- Vložení do webu (F-09): hlavičky webu dnes zakazují mikrofon i cizí skripty a rámy. Úprava se dělá v projektu webu, varianty jsou v `docs/oblasti-a-web.md`.
 - Kdo bude správce osobních údajů podle GDPR.
 
 ## Zásady pro kód
