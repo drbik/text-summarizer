@@ -1,6 +1,6 @@
-# Hlasové podněty – Nezávislí Příšovice
+# Příšovické ucho
 
-Aplikace pro hlasové podněty a dotazy občanů Příšovic. Namluvený vzkaz převede AI do spisovné češtiny a přiřadí ho k tématu. Odpověď hledá nejdřív na webu obce, jinak odpoví zastupitel.
+Aplikace pro hlasové podněty a dotazy občanů Příšovic. Vstupem je grafika ucha na webu nezavisli-prisovice.cz. Namluvený vzkaz převede AI do spisovné češtiny a přiřadí ho k tématu. Odpověď hledá nejdřív na webu obce, jinak odpoví zastupitel.
 
 Projekt je zatím ve fázi požadavků:
 

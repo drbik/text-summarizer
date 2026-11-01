@@ -1,12 +1,23 @@
-# Hlasové podněty – Nezávislí Příšovice
+# Příšovické ucho (prisovicke-ucho)
 
 Webová aplikace, kde občané Příšovic namluví návrh nebo dotaz. AI ho přepíše do spisovné češtiny a přiřadí k existujícímu tématu. Pak hledá odpověď na webu obce, a když ji nenajde, odpoví zastupitel. Nejde o chatbota: AI s uživatelem nevede dialog, jen zpracuje jeden vzkaz.
 
-Provozovatel je uskupení Nezávislí Příšovice (9 z 15 zastupitelů). Aplikace bude součástí jeho webu nezavisli-prisovice.cz a není úředním kanálem obce.
+Provozovatel je uskupení Nezávislí Příšovice (9 z 15 zastupitelů). Aplikace není úředním kanálem obce.
+
+Vstupem bude grafika ucha na webu nezavisli-prisovice.cz. Po kliknutí se otevře rozhraní pro dotaz, přihlášení a odpovědi, aniž by člověk opustil web. Aplikaci proto stav tak, aby šla do webu vložit jedním skriptem nebo odkazem (F-09).
+
+## Zdroje mimo repozitář: jen ke čtení
+
+Na počítači Tomáše (Windows) jsou dvě složky, ze kterých se smí jen číst. **Nic v nich neměň, nevytvářej ani nemaž soubory a nespouštěj v nich příkazy, které něco zapisují.**
+
+- `C:\Users\tomas\OneDrive\06_CODEX\WEB_Prisovice` – zdrojové soubory webu nezavisli-prisovice.cz. Odsud se berou projekty (oblasti dotazů) a informace o práci obce. Úpravy webu, včetně grafiky ucha, se dělají v jeho vlastním projektu, ne tady.
+- `C:\Users\tomas\OneDrive\06_Podcast Language Learning App\docs\history\lessons-learned.md` – zkušenosti s hlasovými modely (přepis řeči a TTS) z jiného projektu. Použij je při výběru modelů.
+
+Cloudová session k nim nemá přístup. V lokální session je zpřístupni jen ke čtení, např. `/add-dir`.
 
 ## Dokumenty
 
-- `docs/PRD.md` – požadavky, verze 0.7 (export). Živá verze je v Claude Docs: https://claude.ai/artifact/1uqzdxoYxj8jR45McMdo3Z. Při rozporu platí živá verze.
+- `docs/PRD.md` – požadavky, verze 0.8 (export). Živá verze je v Claude Docs: https://claude.ai/artifact/1uqzdxoYxj8jR45McMdo3Z. Při rozporu platí živá verze.
 - `docs/research-hlasove-podnety.md` – rešerše hotových řešení, hostingu a všech zdrojů.
 
 Požadavky mají ID (F-01 až F-83) a prioritu MVP / Později / Zvážit. V commitech a kódu na ně odkazuj.
@@ -24,7 +35,7 @@ Požadavky mají ID (F-01 až F-83) a prioritu MVP / Později / Zvážit. V comm
 
 ## MVP (prezentační verze)
 
-1. Stránka s mikrofonem a záložním textovým polem.
+1. Grafika ucha na webu nezavisli-prisovice.cz. Po kliknutí rozhraní s mikrofonem a záložním textovým polem.
 2. Přihlášení a odpovědi přes Telegram.
 3. Přepis řeči, AI úprava do spisovné češtiny, potvrzení textu autorem.
 4. Hledání podobných témat: připojit se, poddotaz, nebo nové téma.
@@ -38,7 +49,8 @@ Do MVP nepatří e-mail, GDPR souhlasy a moderace, zakrytí osobních údajů, o
 ## Otevřené otázky, které blokují start
 
 - Hosting: Cloudflare (Workers, D1, Vectorize, AI Search), nebo český Zerops + Mistral. Rozhodne hlavně to, na čem běží web nezavisli-prisovice.cz.
-- Repozitář webu nezavisli-prisovice.cz zatím není připojený.
+- Projekty z webu nezavisli-prisovice.cz zatím nejsou načtené ze složky WEB_Prisovice.
+- Zjištění o hlasových modelech z `lessons-learned.md` zatím nejsou zapracovaná.
 - Kdo bude správce osobních údajů podle GDPR.
 
 ## Zásady pro kód

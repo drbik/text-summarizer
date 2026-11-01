@@ -1,12 +1,12 @@
-# PRD: Hlasové podněty
+# PRD: Příšovické ucho
 
-24. 10. 2026 · verze 0.7 (návrh k revizi)
+24. 10. 2026 · verze 0.8 (návrh k revizi)
 
 > Export z Claude Docs. Živá verze, ve které se PRD dál upravuje: https://claude.ai/artifact/1uqzdxoYxj8jR45McMdo3Z. Diagramy jsou tady přepsané do Mermaid.
 
 ## Shrnutí
 
-Lidé namluví návrh, dotaz nebo komentář do mikrofonu a AI z něj udělá srozumitelný vzkaz ve spisovné češtině. Odpověď se nejdřív hledá v už existujících tématech a na webu obce Příšovice. Zastupitelé odpovídají jen tam, kde zdroj chybí. Aplikace bude součástí webu nezavisli-prisovice.cz. Nejde o chatbota: AI s uživatelem nevede dialog.
+Lidé namluví návrh, dotaz nebo komentář do mikrofonu a AI z něj udělá srozumitelný vzkaz ve spisovné češtině. Odpověď se nejdřív hledá v už existujících tématech a na webu obce Příšovice. Zastupitelé odpovídají jen tam, kde zdroj chybí. Aplikace se jmenuje Příšovické ucho. Vstupem bude grafika ucha na webu nezavisli-prisovice.cz: po kliknutí se otevře rozhraní pro dotaz, přihlášení a odpovědi. Nejde o chatbota: AI s uživatelem nevede dialog.
 
 **Cíle**
 
@@ -55,7 +55,7 @@ MVP je prezentační verze: celý tok od namluvení po odpověď, jeden kanál (
 
 **V MVP**
 
-- Stránka s tlačítkem mikrofonu a záložním textovým polem jako součást webu nezavisli-prisovice.cz.
+- Grafika ucha na webu nezavisli-prisovice.cz. Po kliknutí se otevře rozhraní s mikrofonem, záložním textovým polem, přihlášením a odpověďmi.
 - Přihlášení a odpovědi přes Telegram, od 15 let.
 - Přepis řeči, AI úprava do spisovné češtiny a potvrzení textu autorem.
 - Hledání podobných témat: připojit se, poddotaz, nebo nové téma.
@@ -141,12 +141,13 @@ Když systém najde podobné téma, rozhoduje autor: je to totéž, je to poddot
 
 ## Funkční požadavky
 
-Návrh má 67 požadavků v sedmi oblastech, 36 z nich je v MVP. Prioritu můžete přepnout ve sloupci Priorita.
+Návrh má 68 požadavků v sedmi oblastech, 37 z nich je v MVP. Prioritu můžete přepnout ve sloupci Priorita.
 
 ### Nahrání podnětu
 
 | ID | Požadavek | Priorita |
 | --- | --- | --- |
+| F-09 | Vstupem je grafika ucha na webu nezavisli-prisovice.cz. Kliknutí otevře rozhraní aplikace, aniž by člověk opustil web. Aplikace jde do webu vložit jedním skriptem nebo odkazem, aby úprava webu byla minimální. | MVP |
 | F-01 | Tlačítko mikrofonu spustí a ukončí nahrávání. Ukazuje uplynulý čas a úroveň hlasitosti. | MVP |
 | F-02 | Nahrávka trvá nejvýš 3 minuty, 30 s před koncem přijde upozornění (**Předpoklad**). | MVP |
 | F-03 | Autor si nahrávku může přehrát, zahodit a nahrát znovu. | Později |
@@ -442,9 +443,10 @@ Rozhodnuté otázky jsou zaškrtnuté. Pro start prezentační verze jsou potře
 - [x] **Oblasti:** podle aktuálních a budoucích projektů na nezavisli-prisovice.cz (rozhodnuto 24. 10. 2026).
 - [ ] **Hosting:** Cloudflare, nebo český či evropský hosting? Katalog cloud computingu se netýká, provozovatel není obec. Rozhodne hlavně to, na čem běží web nezavisli-prisovice.cz. Srovnání je v rešerši (viz Zdroje).
 - [ ] **Správce osobních údajů:** kdo bude podle GDPR správcem? Sdružení nezávislých kandidátů není právnická osoba, takže spolek, nebo konkrétní člověk?
+- [ ] **Hlasové modely a TTS:** zjištění z projektu Podcast Language Learning App (lessons-learned.md) zatím nemám k dispozici. A mají se odpovědi i přečíst nahlas? Zatím je to mimo rozsah.
 - [ ] **Kanál v MVP:** stačí pro prezentaci jen Telegram? E-mail by přišel před ostrým spuštěním.
 - [ ] **Hlasování v MVP:** bez ověření pobytu by hlasoval každý přihlášený. Je to pro prezentaci v pořádku?
-- [ ] **Seznam projektů:** repozitář webu nezavisli-prisovice.cz tahle session nevidí. Po jeho připojení přes GitHub projekty načtu z něj.
+- [ ] **Seznam projektů:** zdrojem je lokální složka webu WEB\_Prisovice, jen ke čtení. Cloudová session k ní nemá přístup, projekty načte lokální session na vašem počítači.
 - [ ] **Zdroj pro projekty:** mají se odpovědi o projektech brát i z nezavisli-prisovice.cz, nebo jen z prisovice.cz?
 - [ ] **Podněty od neobčanů:** smějí po ostrém spuštění podávat podněty i lidé bez trvalého pobytu v Příšovicích?
 - [ ] **Ověření pobytu bez úřadu:** jak ověřit občany, když provozovatel není obec? Možnosti jsou ruční potvrzení týmem, nebo elektronická identita.
@@ -463,6 +465,7 @@ Rozhodnuté otázky jsou zaškrtnuté. Pro start prezentační verze jsou potře
 
 | Verze | Datum | Změny |
 | --- | --- | --- |
+| 0.8 | 1. 11. 2026 | Název Příšovické ucho (repozitář prisovicke-ucho); vstupem je grafika ucha na webu nezavisli-prisovice.cz (F-09); lokální zdroje jen ke čtení; otázka hlasových modelů a TTS |
 | 0.7 | 24. 10. 2026 | Provozovatelem je uskupení Nezávislí Příšovice (9 z 15 zastupitelů), aplikace bude součástí webu nezavisli-prisovice.cz; katalog cloud computingu se netýká; upozornění, že odpovědi nejsou úředním vyjádřením obce; nová rizika a otázka správce osobních údajů |
 | 0.6 | 24. 10. 2026 | MVP zeštíhleno na prezentační verzi (36 požadavků, jen Telegram), ověření pobytu a GDPR až před ostrým spuštěním, věková hranice 15 let, oblasti podle projektů na nezavisli-prisovice.cz, nároky na provoz |
 | 0.5 | 24. 10. 2026 | Témata a odpovědi veřejné bez přihlášení, hlasují jen ověření občané Příšovic, oblasti podle aktivních projektů obce, zakrytí osobních údajů přesunuto do MVP |
